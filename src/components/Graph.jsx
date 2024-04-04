@@ -1,7 +1,6 @@
-// src/components/PopulationChart.js
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto'; // Ensure Chart.js functionalities are available
+import { Line, Bar } from 'react-chartjs-2';
+import Chart from 'chart.js/auto'; 
 
 const PopulationChart = () => {
   const [populationData, setPopulationData] = useState({
@@ -10,7 +9,7 @@ const PopulationChart = () => {
       label: 'Population',
       data: [],
       borderColor: 'rgb(75, 192, 192)',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)', // Optional for a bit of styling
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
       tension: 0.1
     }]
   });
@@ -45,7 +44,6 @@ const PopulationChart = () => {
     fetchData();
   }, []);
 
-  // Optional: Configuration for the chart (e.g., scales, tooltips)
   const options = {
     scales: {
       y: {
@@ -71,13 +69,22 @@ const PopulationChart = () => {
     maintainAspectRatio: false
   };
 
-    return (
-        <div className='card'>
-            <h1 className="text-left text-lg font-semibold text-white">Population Chart</h1>
-            <div class="w-full">
-            <Line data={populationData} options={options} />
-            </div>
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 px-4 py-3 sm:px-6 lg:px-8 gap-8">
+      <div className='card'>
+        <h1 className="text-left text-lg font-semibold text-white">Population Chart (Line)</h1>
+        <div className="w-full">
+          <Line data={populationData} options={options} />
+        </div>
       </div>
+
+      <div className='card'>
+        <h1 className="text-left text-lg font-semibold text-white">Population Chart (Bar)</h1>
+        <div className="w-full">
+          <Bar data={populationData} options={options} />
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,30 +1,29 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Dialog, Transition } from "@headlessui/react";
+import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
   BuildingOffice2Icon,
   HomeIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import React, { Fragment, useState } from 'react'
-import { MdWebAsset } from 'react-icons/md'
-import CryptoPrices from './CryptoPrices'
-import PopulationGraph from './Graph'
-import Header from './Header'
+} from "@heroicons/react/24/outline";
+import React, { Fragment, useState } from "react";
+import { MdWebAsset } from "react-icons/md";
+import CryptoPrices from "./CryptoPrices";
+import PopulationGraph from "./Graph";
+import Header from "./Header";
+import OtherCryptoPrices from "./Market";
 
 const navigation = [
-  { name: 'Home', href: '#', icon: HomeIcon, current: false },
-  { name: 'Organization', href: '#', icon: BuildingOffice2Icon, current: true },
-  { name: 'Asset', href: '#', icon: MdWebAsset, current: false },
-]
-
-
+  { name: "Home", href: "#", icon: HomeIcon, current: false },
+  { name: "Organization", href: "#", icon: BuildingOffice2Icon, current: true },
+  { name: "Asset", href: "#", icon: MdWebAsset, current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 const Home = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const renderSidebar = () => {
     return (
@@ -57,33 +56,33 @@ const Home = () => {
           </form>
         </div>
         <nav className="flex flex-1 flex-col">
-          <ul role="list" className="flex flex-1 flex-col gap-y-7">
+          <ul className="flex flex-1 flex-col gap-y-7">
             <li>
-              <ul role="list" className="-mx-2 space-y-1">
+              <ul className="-mx-2 space-y-1">
                 {navigation.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? ' text-green-600'
-                          : 'text-white hover:text-green-600',
-                        'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          ? " text-green-600"
+                          : "text-white hover:text-green-600",
+                        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                       )}
                     >
-                      <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                      <item.icon
+                        className="h-6 w-6 shrink-0"
+                        aria-hidden="true"
+                      />
                       {item.name}
                     </a>
                   </li>
                 ))}
               </ul>
             </li>
-       
+
             <li className="-mx-6 mt-auto">
-              <a
-                href="#"
-                className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-neutral-700"
-              >
+              <div className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-neutral-700">
                 <img
                   className="h-8 w-8 rounded-full neutral-800"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -91,18 +90,22 @@ const Home = () => {
                 />
                 <span className="sr-only">Your profile</span>
                 <span aria-hidden="true">Kaushal Mishra</span>
-              </a>
+              </div>
             </li>
           </ul>
         </nav>
       </div>
-   ) 
-  }
+    );
+  };
   return (
     <>
       <div>
-      <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-50 xl:hidden" onClose={setSidebarOpen}>
+        <Transition.Root show={sidebarOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-50 xl:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -136,13 +139,20 @@ const Home = () => {
                     leaveTo="opacity-0"
                   >
                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                      <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
+                      <button
+                        type="button"
+                        className="-m-2.5 p-2.5"
+                        onClick={() => setSidebarOpen(false)}
+                      >
                         <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                        <XMarkIcon
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
                       </button>
                     </div>
                   </Transition.Child>
-                 {renderSidebar()}
+                  {renderSidebar()}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -150,41 +160,48 @@ const Home = () => {
         </Transition.Root>
 
         <div className="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col">
-        {renderSidebar()}
+          {renderSidebar()}
         </div>
-        
 
-        <div className="xl:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-neutral-900 px-4 shadow-sm sm:px-6 lg:px-8">
-            <button type="button" className="-m-2.5 p-2.5 text-white xl:hidden" onClick={() => setSidebarOpen(true)}>
-              <span className="sr-only">Open sidebar</span>
-              <Bars3Icon className="h-5 w-5" aria-hidden="true" />
-            </button>      
-            
+        <div className="xl:pl-72 h-screen">
+          <div className="xl:hidden sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-neutral-900 px-4 shadow-sm sm:px-6 lg:px-8">
+            <div class="flex justify-between xl:hidden w-full">
+              <div className="flex h-16 shrink-0 items-center">
+                <img
+                  className="h-8 w-auto"
+                  src="https://carboncell.io/assets/img/logo2.png"
+                  alt="Carbon Cell"
+                />
+              </div>
+              <button
+                type="button"
+                className="-m-2.5 p-2.5 text-white xl:hidden"
+                onClick={() => setSidebarOpen(true)}
+              >
+                <span className="sr-only">Open sidebar</span>
+                <Bars3Icon className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
           <main className="bg-neutral-900">
-          <Header />
+            <Header />
 
-            
-            <div className='flex flex-col lg:flex-row px-4 py-3 sm:px-6 lg:px-8 space-x-0 space-y-8 lg:space-y-0 lg:space-x-8'>
-              
-                
+            <div className="">
               <PopulationGraph />
-              <PopulationGraph />
-             
-             
             </div>
 
-            <div className='flex  px-4 py-3 sm:px-6 lg:px-8'>
+            <div className="flex  px-4 py-3 sm:px-6 lg:px-8">
               <CryptoPrices />
             </div>
+            <div className="flex  px-4 py-3 sm:px-6 lg:px-8">
+              <OtherCryptoPrices />
+            </div>
           </main>
-
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

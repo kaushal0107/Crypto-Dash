@@ -8,7 +8,6 @@ const MetaMaskIntegration = () => {
       checkMetaMaskInstalled();
     }, []);
   
-    // Function to check if MetaMask is installed
     const checkMetaMaskInstalled = () => {
       if (window.ethereum) {
         setIsMetaMaskInstalled(true);
@@ -17,7 +16,6 @@ const MetaMaskIntegration = () => {
       }
     };
 
-  // Function to connect MetaMask wallet
   const connectWallet = async () => {
     try {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -29,14 +27,14 @@ const MetaMaskIntegration = () => {
   };
 
   return (
-    <div className="mt-4 text-white">
+    <div className="mt-4 text-white text-right">
       {!isMetaMaskInstalled && (
-        <p>MetaMask is not installed. Please install MetaMask to connect your wallet.</p>
+        <p className='text-yellow-600'>Please install MetaMask to connect your wallet.</p>
       )}
       {isMetaMaskInstalled && !walletConnected && (
         <button
           onClick={connectWallet}
-          className="text-lg font-medium px-4 py-2 bg-green-700 hover:bg-green-800 text-white cursor-pointer rounded-sm"
+          className="text-xs md:text-base lg:text-lg font-medium px-4 py-2 bg-green-700 hover:bg-green-800 text-white cursor-pointer rounded-md"
         >
           Connect MetaMask Wallet
         </button>
