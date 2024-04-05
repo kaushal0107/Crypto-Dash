@@ -51,7 +51,9 @@ const OtherCryptoPrices = () => {
                     <FaCoins className="text-2xl text-white" />
                   )}
                 </div>
-                <h2 className="text-base sm:text-lg font-semibold ml-4">{crypto.name}</h2>
+                <h2 className="text-base sm:text-lg font-semibold ml-4">
+                  {crypto.name}
+                </h2>
               </div>
             </div>
             <p className="text-white">Price: ${crypto.price}</p>

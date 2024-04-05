@@ -1,16 +1,22 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {
-    BuildingOffice2Icon,
-    HomeIcon,
-    XMarkIcon,
+  BuildingOffice2Icon,
+  HomeIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState } from "react";
 import { MdWebAsset } from "react-icons/md";
-import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import Asset from './Assets';
-import Home from './Home';
-import Organization from './Organization';
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import Asset from "./Assets";
+import Home from "./Home";
+import Organization from "./Organization";
 
 const navigation = [
   { name: "Home", href: "/", icon: HomeIcon },
@@ -23,15 +29,14 @@ function classNames(...classes) {
 }
 
 const Dashboard = () => {
-    const navigate = useNavigate(); 
-    const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
 
-    
-    const isCurrentPage = (path) => location.pathname === path;
+  const isCurrentPage = (path) => location.pathname === path;
   const renderSidebar = () => {
-    const filteredNavigation = navigation.filter(item =>
+    const filteredNavigation = navigation.filter((item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -61,7 +66,7 @@ const Dashboard = () => {
                 type="search"
                 name="search"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} 
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
           </form>
@@ -81,8 +86,8 @@ const Dashboard = () => {
                         "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                       )}
                       onClick={(e) => {
-                        e.preventDefault(); 
-                        navigate(item.href); 
+                        e.preventDefault();
+                        navigate(item.href);
                       }}
                     >
                       <item.icon
@@ -200,11 +205,11 @@ const Dashboard = () => {
           </div>
 
           <main className="bg-neutral-900">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/organization" element={<Organization />} />
-            <Route path="/asset" element={<Asset />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/organization" element={<Organization />} />
+              <Route path="/asset" element={<Asset />} />
+            </Routes>
           </main>
         </div>
       </div>

@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const MetaMaskIntegration = () => {
-    const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
-    const [walletConnected, setWalletConnected] = useState(false);
-  
-    useEffect(() => {
-      checkMetaMaskInstalled();
-    }, []);
-  
-    const checkMetaMaskInstalled = () => {
-      if (window.ethereum) {
-        setIsMetaMaskInstalled(true);
-      } else {
-        setIsMetaMaskInstalled(false);
-      }
-    };
+  const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
+  const [walletConnected, setWalletConnected] = useState(false);
+
+  useEffect(() => {
+    checkMetaMaskInstalled();
+  }, []);
+
+  const checkMetaMaskInstalled = () => {
+    if (window.ethereum) {
+      setIsMetaMaskInstalled(true);
+    } else {
+      setIsMetaMaskInstalled(false);
+    }
+  };
 
   const connectWallet = async () => {
     try {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      await window.ethereum.request({ method: "eth_requestAccounts" });
       setWalletConnected(true);
     } catch (error) {
-      console.error('Error connecting wallet:', error);
+      console.error("Error connecting wallet:", error);
       setWalletConnected(false);
     }
   };
@@ -29,7 +29,9 @@ const MetaMaskIntegration = () => {
   return (
     <div className="mt-4 text-white text-right">
       {!isMetaMaskInstalled && (
-        <p className='text-yellow-600'>Please install MetaMask to connect your wallet.</p>
+        <p className="text-yellow-600">
+          Please install MetaMask to connect your wallet.
+        </p>
       )}
       {isMetaMaskInstalled && !walletConnected && (
         <button
@@ -40,7 +42,9 @@ const MetaMaskIntegration = () => {
         </button>
       )}
       {walletConnected && (
-        <p className='text-green-700 font-medium text-base'>MetaMask Wallet Connected Successfully!</p>
+        <p className="text-green-700 font-medium text-base">
+          MetaMask Wallet Connected Successfully!
+        </p>
       )}
     </div>
   );
