@@ -30,11 +30,11 @@ const CryptoPrices = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 w-full">
       <h2 className="text-xl text-white font-semibold">Bitcoin Current Price</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full">
       {Object.values(bitcoinPrices).map((currency, index) => (
-        <div key={index} className={`rounded-lg shadow-lg text-white p-6 ${getBackgroundColor(currency.code)}`}>
+        <div key={index} className={`rounded-lg shadow-lg text-white p-6 w-full ${getBackgroundColor(currency.code)}`}>
           <div className="flex items-center mb-4">
             <div className="bg-yellow-500 rounded-full p-3">
               <FaBitcoin className="text-3xl text-white" />

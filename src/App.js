@@ -1,11 +1,13 @@
-import Home from './components/Home';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Router>
+      <Dashboard />
+    </Router>
   );
-}
+};
 
 export default App;

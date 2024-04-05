@@ -28,19 +28,19 @@ const OtherCryptoPrices = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 w-full">
       <h2 className="text-xl text-white font-semibold">Market</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 w-full">
         {otherCryptos.map((crypto, index) => (
           <div
             key={index}
-            className={`rounded-lg shadow-lg text-white p-6 ${getBackgroundColor(
+            className={`rounded-lg shadow-lg text-white p-3 sm:p-6 ${getBackgroundColor(
               crypto.symbol
             )}`}
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
-                <div className="rounded-full p-3">
+                <div className="rounded-full p-2 sm:p-3">
                   {crypto.symbol === "ETH" && (
                     <FaEthereum className="text-2xl text-white" />
                   )}
@@ -51,7 +51,7 @@ const OtherCryptoPrices = () => {
                     <FaCoins className="text-2xl text-white" />
                   )}
                 </div>
-                <h2 className="text-lg font-semibold ml-4">{crypto.name}</h2>
+                <h2 className="text-base sm:text-lg font-semibold ml-4">{crypto.name}</h2>
               </div>
             </div>
             <p className="text-white">Price: ${crypto.price}</p>
